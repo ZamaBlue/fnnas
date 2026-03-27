@@ -425,6 +425,10 @@ jobs:
           [[ "${?}" -ne "0" ]] && echo "Error: Download failed." && exit 1
 
           # Create directory symlinks for packaging
+          # 第一步：确保目标文件夹存在（新增这一行）
+          mkdir -p "/home/runner/work/_actions/${OWNER,,}/fnnas/main"
+
+          # 第二步：再执行原本的创建快捷方式命令
           ln -sf /builder/fnnas ${{ github.workspace }}/fnnas
           ln -sf /builder/fnnas "/home/runner/work/_actions/${OWNER,,}/fnnas/main/fnnas"
 
